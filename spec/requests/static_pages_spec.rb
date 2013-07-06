@@ -6,9 +6,14 @@ describe "Static pages" do
       visit '/static_pages/home'
       page.should have_selector('h1', :text => 'Sample App')
     end
-    it "should have the title 'Home'" do
+    it "should have the title 'Ruby on Rails Tutorial Sample App'" do
       visit "/static_pages/home"
       page.should have_selector('title', 
+                              :text => "Ruby on Rails Tutorial Sample App")
+    end
+    it "should not have the title 'Home'" do
+      visit "/static_pages/home"
+      page.should_not have_selector('title', 
                               :text => "| Home")
     end
   end
@@ -34,6 +39,18 @@ describe "Static pages" do
         visit "/static_pages/about"
         page.should have_selector('title', 
                               :text => "| About Us")
+    end
+  end
+
+  describe "Contacts" do
+    it "should have the content 'Contacts'" do
+        visit '/static_pages/contact'
+        page.should have_selector('h1', :text => 'Contacts')
+    end
+    it "should have the correct title 'Contacts'"do
+        visit '/static_pages/contact'
+        page.should have_selector('title',
+                                  :text => "| Contacts")
     end
   end
 end
